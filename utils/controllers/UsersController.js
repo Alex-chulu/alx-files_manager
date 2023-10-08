@@ -35,7 +35,12 @@ const UsersController = {
         email,
         password: hashedPassword,
       });
+      const user = { id: 'userId', email: 'user@example.com' };
 
+      const job = await userQueue.add('sendWelcomeEmail', {
+      userId: user.id,
+      email: user.email,
+      });
       await newUser.save();
 
       // Return the new user with minimal information (email and id)
