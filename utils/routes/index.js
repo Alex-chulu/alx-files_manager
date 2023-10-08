@@ -1,20 +1,14 @@
-import { Router } from 'express';
-import AppController from '../controllers/AppController';
-import UsersController from '../controllers/UsersController';
-import AuthController from '../controllers/AuthController';
+const express = require('express');
+const router = express.Router();
+const AppController = require('../controllers/AppController');
+const UsersController = require('../controllers/UsersController'); // Import UsersController
 
-const router = Router();
-
-// Define routes
+// Define API endpoints
 router.get('/status', AppController.getStatus);
 router.get('/stats', AppController.getStats);
 
-// Routes for users
+// Add the new POST endpoint for creating users
 router.post('/users', UsersController.postNew);
-router.get('/users/me', UsersController.getMe);
 
-// authentication of routes
-router.get('/connect', AuthController.getConnect);
-router.get('/disconnect', AuthController.getDisconnect);
+module.exports = router;
 
-export default router;
